@@ -38,7 +38,7 @@ const useStyles = makeStyles({
 
 
 
-const EditUsers = () => {
+const EditUser = () => {
     const classes = useStyles();
     const { id } = useParams();
     let history = useNavigate();
@@ -47,14 +47,13 @@ const EditUsers = () => {
 
 
     useEffect(() => {
-        const loadUserData = async () => {
-            const response = await getUsers(id);
-            setUser(response.data);
-        } 
         loadUserData();
-    }, [id]);
+    }, []);
 
-    
+    const loadUserData = async () => {
+        const response = await getUsers(id);
+        setUser(response.data);
+    } 
 
 
     const onValueChange = (e) => {
@@ -63,32 +62,30 @@ const EditUsers = () => {
     }
 
     const editUserDetails = async () => {
-        const response = await editUser(id, user);
-        history.push('/all');
-
+        await editUser(user);
+        history.push('./all');
     }
-
     return (
         <FormGroup className={classes.form} >
             <Typography variant='h4' style={{ fontFamily: "monospace" }}> Edit Students</Typography>
             <FormControl >
-                <InputLabel htmlFor="my-input">Name</InputLabel>
-                <Input onChange={(e) => onValueChange(e)} name='name' value={name} aria-describedby="my-helper-text" />
+                <InputLabel >Name</InputLabel>
+                <Input onChange={(e) => onValueChange(e)} name='name' value={name} />
             </FormControl>
             <FormControl>
-                <InputLabel htmlFor="my-input">USN</InputLabel>
-                <Input onChange={(e) => onValueChange(e)} name='usn' value={usn} aria-describedby="my-helper-text" />
+                <InputLabel >USN</InputLabel>
+                <Input onChange={(e) => onValueChange(e)} name='usn' value={usn} />
             </FormControl>
             <FormControl>
-                <InputLabel htmlFor="my-input">Branch</InputLabel>
-                <Input onChange={(e) => onValueChange(e)} name='branch' value={branch} aria-describedby="my-helper-text" />
+                <InputLabel >Branch</InputLabel>
+                <Input onChange={(e) => onValueChange(e)} name='branch' value={branch} />
             </FormControl>
             <FormControl>
-                <InputLabel htmlFor="my-input">Email</InputLabel>
-                <Input onChange={(e) => onValueChange(e)} name='email' value={email} aria-describedby="my-helper-text" />
+                <InputLabel >Email</InputLabel>
+                <Input onChange={(e) => onValueChange(e)} name='email' value={email} />
             </FormControl>
             <Button variant="contained" onClick={() => editUserDetails()} className={classes.button} style={{ borderRadius: 10, width: 50, margin: "20px 0 0 38%" }}>Upload</Button>
         </FormGroup>
     );
 }
-export default EditUsers;
+export default EditUser;

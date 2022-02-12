@@ -1,6 +1,5 @@
 import React from 'react'
 import { AppBar, Toolbar, makeStyles } from '@material-ui/core'
-import './Navbar.css'
 import { NavLink, Link, Routes, Route } from 'react-router-dom'
 
 
@@ -27,12 +26,9 @@ const Navbar = () => {
     return (
         <AppBar className={classes.header} position="static">
             <Toolbar>
-
                 <Link className={classes.tabs} to="./"> College Data</Link>
                 <Link className={classes.tabs} to="all">Student Lists</Link>
                 <Link className={classes.tabs} to="add"> Add User</Link>
-
-
                 {/* <NavLink className={classes.tabs} to='./' exact> College Data</NavLink>
                 <NavLink className={classes.tabs} to='lists' exact> Student Lists</NavLink>
                 <NavLink className={classes.tabs} to='add' exact> Add User</NavLink> */}

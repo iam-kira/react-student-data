@@ -44,10 +44,11 @@ const AddUser = () => {
     const onValueChange = (e) => {
         console.log(e.target.value);
         setUser({ ...user, [e.target.name]: e.target.value })
+        console.log(user);
     }
 
-    const addUserDetails = async () => {
-        await addUser(user);
+    const addUserDetails = async (user) => {
+        await addUser( user);
         history.push('./all');
 
     }
@@ -57,19 +58,19 @@ const AddUser = () => {
             <Typography variant='h4' style={{ fontFamily: "monospace" }}> Add Students</Typography>
             <FormControl >
                 <InputLabel>Name</InputLabel>
-                <Input onChange={(e) => onValueChange(e)} name='name' value={name} id="my-input" />
+                <Input onChange={(e) => onValueChange(e)} name='name' value={name} />
             </FormControl>
             <FormControl>
                 <InputLabel>USN</InputLabel>
-                <Input onChange={(e) => onValueChange(e)} name='usn' value={usn} id="my-input" />
+                <Input onChange={(e) => onValueChange(e)} name='usn' value={usn} />
             </FormControl>
             <FormControl>
                 <InputLabel>Branch</InputLabel>
-                <Input onChange={(e) => onValueChange(e)} name='branch' value={branch} id="my-input" />
+                <Input onChange={(e) => onValueChange(e)} name='branch' value={branch} />
             </FormControl>
             <FormControl>
                 <InputLabel>Email</InputLabel>
-                <Input onChange={(e) => onValueChange(e)} name='email' value={email} id="my-input" />
+                <Input onChange={(e) => onValueChange(e)} name='email' value={email} />
             </FormControl>
             <Button variant="contained" onClick={() => addUserDetails()} className={classes.button} style={{ borderRadius: 10, width: 50, margin: "20px 0 0 38%" }}>Add</Button>
         </FormGroup>

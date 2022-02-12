@@ -42,33 +42,24 @@ const useStyles = makeStyles({
 })
 
 
-const StudentLists = () => {
+const AllUsers = () => {
     const classes = useStyles();
     const [users, setUsers] = useState([]);
 
     useEffect(() => {
-        const getStudentLists = async () => {
-            let response = await getUsers();
-            // console.log(response.data);
-            setUsers(response.data);
-        }
-        getStudentLists();
+        getAllUsers();
     }, []);
 
-
-
-
     const deleteUserData = async (id) => {
-        const getStudentLists = async () => {
-            let response = await getUsers();
-            // console.log(response.data);
-            setUsers(response.data);
-        }
         await deleteUser(id);
-        getStudentLists();
+        getAllUsers();
     }
 
-
+    const getAllUsers = async () => {
+        let response = await getUsers();
+        console.log(response.data);
+        setUsers(response.data);
+    }
     return (
         <div className={classes.bg}>
             <Table className={classes.table}>
@@ -92,8 +83,8 @@ const StudentLists = () => {
                             <TableCell>{user.branch}</TableCell>
                             <TableCell>{user.email}</TableCell>
                             <TableCell>
-                                <Button variant="contained" color="primary" style={{ marginRight: 10 }} component={Link} to={`/edit/${user._id}`}>Edit</Button>
-                                <Button variant="contained" color="secondary" onClick={() => deleteUserData(user._id)}>Delete</Button>
+                                <Button variant="contained" color="primary" style={{ marginRight: 10 }} component={Link} to={`/edit/${user.id}`}>Edit</Button>
+                                <Button variant="contained" color="secondary" onClick={() => deleteUserData(user.id)}>Delete</Button>
                             </TableCell>
 
                         </TableRow>
@@ -103,4 +94,4 @@ const StudentLists = () => {
         </div>
     );
 }
-export default StudentLists;
+export default AllUsers;
