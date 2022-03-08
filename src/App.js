@@ -67,8 +67,8 @@ function App() {
     // Edit Task
     const editTask = (id) => {
 
-        const text = prompt("Task Name");
-        const day = prompt("Day and Time");
+        const text = prompt("Student Name");
+        const day = prompt("Student Usn");
         let data = JSON.parse(localStorage.getItem('taskAdded'));
 
         const myData = data.map(x => {
