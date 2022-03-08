@@ -1,27 +1,27 @@
-// Importing Components
+
 import Header from './components/Header';
 import Tasks from './components/Tasks';
 import AddTask from './components/AddTask';
-// Importing React Hooks
+
 import { useState, useEffect } from 'react';
-// Importing Packages
+
 import { v4 as uuidv4 } from 'uuid';
 import Swal from "sweetalert2";
 
 function App() {
-    // All States
-    const [loading, setloading] = useState(true); // Pre-loader before page renders
-    const [tasks, setTasks] = useState([]); // Task State
-    const [showAddTask, setShowAddTask] = useState(false); // To reveal add task form
 
-    // Pre-loader
+    const [loading, setloading] = useState(true); 
+    const [tasks, setTasks] = useState([]); 
+    const [showAddTask, setShowAddTask] = useState(false);
+
+   
     useEffect(() => {
         setTimeout(() => {
             setloading(false);
         }, 3500);
     }, [])
 
-    // Fetching from Local Storage
+   
     const getTasks = JSON.parse(localStorage.getItem("taskAdded"));
 
     useEffect(() => {
@@ -30,10 +30,10 @@ function App() {
         } else {
             setTasks(getTasks);
         }
-        // eslint-disable-next-line
+       
     }, [])
 
-    // Add Task
+    
     const addTask = (task) => {
         const id = uuidv4();
         const newTask = { id, ...task }
@@ -49,7 +49,7 @@ function App() {
         localStorage.setItem("taskAdded", JSON.stringify([...tasks, newTask]));
     }
 
-    // Delete Task
+    
     const deleteTask = (id) => {
         const deleteTask = tasks.filter((task) => task.id !== id);
 
